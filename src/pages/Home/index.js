@@ -1,5 +1,6 @@
 import {React, useState} from "react";
 import { Link, useLocation } from 'wouter'
+import SearchResult from "../searchResult/index";
 import './style.css';
 
 export default function Home(){
@@ -15,6 +16,7 @@ export default function Home(){
         //Es necesario colocar esto para que no recargue la pag.
 
         pushLocation(`/search/${keyword}`)
+        SearchResult({params:`${keyword}`})
     }
 
     /* Variable usaba para actualizar el valor de la keyword */ 
@@ -29,9 +31,9 @@ export default function Home(){
                 <input placeholder="Search a gif here ..." onChange={handleChange} type="text" value={keyword}/>
                 <input onSubmit={handleSubmit} type="submit" value="Buscar" />
             </form>
-            <Link to='/gif/panda'>Gifs de Pandas</Link>
-            <Link to='/gif/ecuador'>Gifs de Ecuador</Link>
-            <Link to='/gif/chile'>Gifs de Chile</Link>
+            <Link to='/search/panda'>Gifs de Pandas</Link>
+            <Link to='/search/ecuador'>Gifs de Ecuador</Link>
+            <Link to='/search/chile'>Gifs de Chile</Link>
         </div>
     )
 }

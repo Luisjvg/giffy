@@ -1,27 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react'
 import Gif from '../Gif/Gif'
-import getGifs from '../../service/getGifs';
 
-export default function ListOfGifs({params}){
-    console.log(params)
-    const { keyword } = params
-    const [loading, setLoading] = useState(false)
-    
-    const [gifs, setGifs] = useState([])
-
-    useEffect(function(){
-      setLoading(true)
-        getGifs({ keyword })
-        .then(gifs => {
-          setGifs(gifs)
-          setLoading(false)
-          })
-        // setGifs(diferentGIFS)
-      }, [keyword])
-
-      if(loading) return <i>Cargando</i>
-
-    return <div>
+export default function ListOfGifs({gifs}){
+  console.log(gifs)
+  return <div className='ListOfGifs'>
       {
         gifs.map(({id, title, url}) => 
         <Gif
@@ -29,8 +11,8 @@ export default function ListOfGifs({params}){
           id={id} 
           title={title}
           url={url}
-        />)
+        />
+        )
       }
     </div>
-        
 }
