@@ -1,11 +1,21 @@
-import {React, useState} from "react";
+import {React, useState, useEffect} from "react";
 import { Link, useLocation } from 'wouter'
-import SearchResult from "../searchResult/index";
 import './style.css';
+import getGifs from "../../service/getGifs";
+import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
 
 export default function Home(){
     const [keyword, setKeyword] = useState('');
     /* useState es un array que obtenemos la keyword y tambien la podemos actualizar */
+    const [gifs, setGifs] = useState([])
+    
+    useEffect(() => {
+            getGifs({keyword: 'Rick'})
+            .then(gifs => {
+                setGifs(gifs)
+            })
+    }, [keyword])
+
 
     const [path, pushLocation] = useLocation() 
     /* con este hook de wouter tenemos un array con el path(/) y la direccion a la cual queremos ir */
@@ -16,7 +26,6 @@ export default function Home(){
         //Es necesario colocar esto para que no recargue la pag.
 
         pushLocation(`/search/${keyword}`)
-        SearchResult({params:`${keyword}`})
     }
 
     /* Variable usaba para actualizar el valor de la keyword */ 
@@ -34,6 +43,8 @@ export default function Home(){
             <Link to='/search/panda'>Gifs de Pandas</Link>
             <Link to='/search/ecuador'>Gifs de Ecuador</Link>
             <Link to='/search/chile'>Gifs de Chile</Link>
+            <h3>Última busqueda</h3>
+            <ListOfGifs gifs={gifs}/>
         </div>
     )
 }

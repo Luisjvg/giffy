@@ -1,8 +1,8 @@
 import React from 'react';
+import {Route} from 'wouter'
 import './App.css';
 import Home from './pages/Home/index'
-import {Route} from 'wouter'
-import ListOfGifs from './components/ListOfGifs/ListOfGifs'
+import SearchResult from './pages/searchResult/index'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           component={Home}
         />
         <Route
-          component={ListOfGifs}
+          component={SearchResult}
           path="/search/:keyword"
         />
       </section>
