@@ -1,21 +1,14 @@
-import {React, useState, useEffect} from "react";
+import {React, useState} from "react";
 import { Link, useLocation } from 'wouter'
 import './style.css';
-import getGifs from "../../service/getGifs";
+import {useGifs} from '../../hooks/useGifs'
 import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
 
 export default function Home(){
     const [keyword, setKeyword] = useState('');
     /* useState es un array que obtenemos la keyword y tambien la podemos actualizar */
-    const [gifs, setGifs] = useState([])
     
-    useEffect(() => {
-            getGifs({keyword: 'Rick'})
-            .then(gifs => {
-                setGifs(gifs)
-            })
-    }, [keyword])
-
+    const {gifs} = useGifs()
 
     const [path, pushLocation] = useLocation() 
     /* con este hook de wouter tenemos un array con el path(/) y la direccion a la cual queremos ir */
