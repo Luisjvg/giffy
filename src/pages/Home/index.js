@@ -10,7 +10,7 @@ export default function Home(){
     
     const {gifs} = useGifs()
 
-    const [path, pushLocation] = useLocation() 
+    const [pushLocation] = useLocation() 
     /* con este hook de wouter tenemos un array con el path(/) y la direccion a la cual queremos ir */
 
     /* Variable usaba para cuando se hace submit se cambie la ruta */
