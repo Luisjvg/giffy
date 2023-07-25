@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <section className='App-content'>
         <Route 
-          path="/" 
+          path="/giffy"
           component={Home}
         />
         <Route

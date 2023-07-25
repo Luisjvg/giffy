@@ -10,7 +10,7 @@ export default function Home(){
     
     const {gifs} = useGifs()
 
-    const [pushLocation] = useLocation() 
+    const [pushLocation, setPushLocation] = useLocation() 
     /* con este hook de wouter tenemos un array con el path(/) y la direccion a la cual queremos ir */
 
     /* Variable usaba para cuando se hace submit se cambie la ruta */
@@ -18,7 +18,7 @@ export default function Home(){
         evt.preventDefault() 
         //Es necesario colocar esto para que no recargue la pag.
 
-        pushLocation(`/search/${keyword}`)
+        setPushLocation(`/search/${keyword}`)
     }
 
     /* Variable usaba para actualizar el valor de la keyword */ 
@@ -31,7 +31,9 @@ export default function Home(){
             <h1>Home | Giffy</h1>
             <form onSubmit={handleSubmit}>
                 <input placeholder="Search a gif here ..." onChange={handleChange} type="text" value={keyword}/>
-                <input onSubmit={handleSubmit} type="submit" value="Buscar" />
+                <button onClick={handleSubmit} type="submit" value="Buscar">
+                    Buscar
+                </button>
             </form>
             <Link to='/search/panda'>Gifs de Pandas</Link>
             <Link to='/search/ecuador'>Gifs de Ecuador</Link>
